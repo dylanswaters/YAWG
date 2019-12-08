@@ -1,0 +1,12 @@
+name,acc,att,arm,numHits,numAtts,speed,cost,desc
+knives,30,1,0,1,1,25,0.5,"cheap ineffective"
+rifles,50,1,0,1,1,25,1,"standard issue"
+snipers,70,1,0,1,1,25,1.5,"higher accuracy"
+"machine gun",50,1,0,1,2,25,1.5,"more attacks"
+"anti tank",50,2,0,2,1,25,2,"higher damage ability more targets hit with attacks"
+grenadiers,30,2,0,3,1,25,2,"lots of explosions little accuracy"
+artillery,50,2,1,3,1,25,3,"standard artillery effective vs light tanks and infantry"
+"anti tank artillery",50,4,0,2,1,25,3,"artillery de"
+"light tank",50,2,1,2,2,200,3
+"medium tank",50,3,2,3,1,4
+"heavy tank",50,4,3,4,1,5.5
