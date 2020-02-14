@@ -20,6 +20,9 @@ class Country:
            retstr += str(city.getName()) + ", "
         return retstr
 
+    def getPopTotal(self):
+        return self.popTotal
+
     def getName(self):
         return self.name
 
@@ -27,13 +30,16 @@ class Country:
         return self.cities
 
     def addCity(self, city):
+        city.setCountry(self)
         self.cities.append(city)
         self.popTotal += city.getPop()
 
     def delCityByIndex(self, index):
+        self.cities[index].setCountry(None)
         self.popTotal -= self.cities[index]
         self.cities.remove(index)
 
     def delCityByCity(self, city):
+        city.setCountry(None)
         self.popTotal -= city.getPop()
         self.cities.remove(city)

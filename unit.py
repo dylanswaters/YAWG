@@ -4,11 +4,13 @@ class Unit:
     equipment = []
     name = ""
     numSoldiers = 0
+    country = None
 
     def __init__(self, name):
         self.equipment = []
         self.name = name
         self.numSoldiers = 0
+        self.country = None
 
     def takeDamage(self, damage):
         dam = damage[1] / damage[0]
@@ -31,3 +33,9 @@ class Unit:
     def addEquipment(self, e):
         self.numSoldiers += e.getSoldiers()
         self.equipment.append(e)
+
+    def getCountry(self):
+        return self.country
+
+    def setCountry(self, c):
+        self.country = c

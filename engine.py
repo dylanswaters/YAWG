@@ -1,5 +1,6 @@
 import random
-import tkinter
+from tkinter import *
+from tkinter import ttk
 
 from city import *
 from unit import *
@@ -56,32 +57,54 @@ def main():
 
     inputBuffer = " "
     playerCountry = None
-    master = Tk()
-    master.title("YAWG")
+    root = Tk()
+    root.title("YAWG")
+    rootFrame = ttk.Frame(root, padding="10")
+    rootFrame.grid(column=0, row=0)
+    playerCountry = None
 
-    
     countryNames = ""
     for cni in range(0, len(countryList)):
-        countryNames += str(cni) + "- " + countryList[cni].getName() + " "
-    print(countryNames)
-    inputBuffer = input()
-    try:
-        int(inputBuffer)
-    except:
-        print("invalid input")
-        return
-    playerCountry = countryList[int(inputBuffer)]
+        countryNames += "\"" + countryList[cni].getName() + " | Pop: " + str(countryList[cni].getPopTotal()) + "\" "
+        # print(countryNames)
+    countryNames = StringVar(value=countryNames)
+    countryListBox = Listbox(rootFrame, listvariable=countryNames, width=40, height=10)
+    countryListBox.grid(column=1,row=1)
+    # countryListBox.selection_set(0)
+
+    def play(*args):
+        # set player country
+        playerCountry = countryList[countryListBox.curselection()[0]]
+        # delete the current widgets
+        list = rootFrame.grid_slaves()
+        for l in list:
+            l.grid_forget()
+        # create new screen
+        playerCountryName = playerCountry.getName()
+        countryNameLabel = ttk.Label(rootFrame, textvariable=playerCountryName, width=40, height=10)
+        countryNameLabel.grid(column=1, row=1)
+
+    playButton = Button(rootFrame, text='Play', command=play).grid(column=1, row=2)
 
 
-    while(inputBuffer != "q"):
-        # update ui
-        master.update_idletasks()
-        master.update()
-        # show menu
-        #
-        for city in playerCountry.getCities():
-            print(city)
-        inputBuffer = input()
+    root.mainloop()
+    # inputBuffer = input()
+    # try:
+    #     int(inputBuffer)
+    # except:
+    #     print("invalid input")
+    #     return
+    # playerCountry = countryList[int(inputBuffer)]
+    # while(inputBuffer != "q"):
+    #     # update ui
+    #     root.update_idletasks()
+    #     root.update()
+    #     root.mainloop()
+    #     # show menu
+    #     #
+    #     for city in playerCountry.getCities():
+    #         print(city)
+    #     inputBuffer = input()
 
 
 if __name__ == '__main__':

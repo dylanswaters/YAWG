@@ -33,3 +33,9 @@ class City:
 
     def getName(self):
         return self.name
+
+    def getCountry(self):
+        return self.country
+
+    def setCountry(self, c):
+        self.country = c
